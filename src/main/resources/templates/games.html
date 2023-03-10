@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Position Report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div class="gamelist">
+
+    <h2>Games Currently Being Played</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Guessing Attempts</th>
+            <th>From Range</th>
+            <th>To Range</th>
+            <th>Last Modified</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ac : ${currentGames}">
+            <td th:text="${ac.id}"></td>
+            <td th:text="${ac.guessingAttempts}"></td>
+            <td th:text="${ac.fromRange}"></td>
+            <td th:text="${ac.toRange}"></td>
+            <td th:text="${ac.lastModified}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        window.onload = setupRefresh;
+
+        function setupRefresh() {
+            setTimeout("refreshPage();", 5000) // refresh page every 5 seconds
+        }
+
+        function refreshPage() {
+            window.location = location.href;
+        }
+    </script>
+</div>
+</body>
+</html>
